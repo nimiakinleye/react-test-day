@@ -6,20 +6,22 @@ import { Checkout as SourceCheckout } from 'SourceRoute/Checkout/Checkout.compon
 export class CheckoutComponent extends SourceCheckout {
 
   renderSteps () {
+    const {checkoutStep} = this.props
     const steps = this.stepMap
     const stepsKey = Object.keys(steps)
-    console.log(stepsKey)
     const stepsList = stepsKey.map(step => {
       return (steps[step])
     })
-    console.log(stepsList)
 
     return (
       stepsList.map((step, i) => {
+        // console.log(checkoutStep)
+        const likeCheckoutStep = step.title.toUpperCase().split(' ').join('_')
+        console.log(likeCheckoutStep)
         return (
-          <div block='Steps' elem='Step'>
-            <div elem='index'>{ i+1 }</div>
-            <div elem='title'>{ step.title }</div>
+          <div block='Steps' elem={`Step ${checkoutStep === likeCheckoutStep ? 'Active' : ''}`}>
+            <div block='Steps' elem='index'>{ i+1 }</div>
+            <div block='Steps' elem='title'>{ step.title }</div>
           </div>
         )
       })
@@ -58,8 +60,5 @@ export class CheckoutComponent extends SourceCheckout {
   }
 
 }
-
-// export * from 'SourceRoute/Checkout/Checkout.component';
-// export { default } from 'SourceRoute/Checkout/Checkout.component';
 
 export default CheckoutComponent
