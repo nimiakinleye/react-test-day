@@ -17,7 +17,7 @@ export class CheckoutComponent extends SourceCheckout {
     return (
       stepsList.map((step, i) => {
         return (
-          <div block='Checkout' elem='Step'>
+          <div block='Steps' elem='Step'>
             <div elem='index'>{ i+1 }</div>
             <div elem='title'>{ step.title }</div>
           </div>
