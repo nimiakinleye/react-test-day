@@ -2,29 +2,36 @@ import ContentWrapper from 'Component/ContentWrapper';
 import './Checkout.override.style.scss';
 
 import { Checkout as SourceCheckout } from 'SourceRoute/Checkout/Checkout.component'
+import FormStep from '../../Components/FormStep/FormStep.component'
 
 export class CheckoutComponent extends SourceCheckout {
 
   renderSteps () {
     const {checkoutStep} = this.props
-    const steps = this.stepMap
-    const stepsKey = Object.keys(steps)
-    const stepsList = stepsKey.map(step => {
-      return ({...steps[step], joinString: steps[step].title.toUpperCase().split(' ').join('_')})
-    })
-    const currentIndex = stepsKey.indexOf(checkoutStep, 0)
-    console.log(stepsList)
-
+    // return (
+    //   <FormStep />
+    // )
     return (
-      stepsList.map((step, i) => {
-        return (
-          <div key={i} block='Steps' elem={`Step ${i <= currentIndex ? 'Active' : ''}`}>
-            <div block='Steps' elem='index'>{ i+1 }</div>
-            <div block='Steps' elem='title'>{ step.title }</div>
-          </div>
-        )
-      })
+      <FormStep checkoutStep={checkoutStep} steps={this.stepMap} />
     )
+    // const steps = this.stepMap
+    // const stepsKey = Object.keys(steps)
+    // const stepsList = stepsKey.map(step => {
+    //   return ({...steps[step], joinString: steps[step].title.toUpperCase().split(' ').join('_')})
+    // })
+    // const currentIndex = stepsKey.indexOf(checkoutStep, 0)
+    // console.log(stepsList)
+
+    // return (
+    //   stepsList.map((step, i) => {
+    //     return (
+    //       <div key={i} block='Steps' elem={`Step ${i <= currentIndex ? 'Active' : ''}`}>
+    //         <div block='Steps' elem='index'>{ i+1 }</div>
+    //         <div block='Steps' elem='title'>{ step.title }</div>
+    //       </div>
+    //     )
+    //   })
+    // )
   }
 
   render () {
@@ -35,6 +42,7 @@ export class CheckoutComponent extends SourceCheckout {
                 label={ __('Checkout page') }
                 >
                     { this.renderSteps() }
+                    
                 </ContentWrapper>
                 
                 <ContentWrapper
