@@ -1,0 +1,12 @@
+.Checkout {
+
+  text-transform: uppercase;
+  
+  &-Steps {
+    @include after-mobile {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px 80px;
+    }
+  }
+}
