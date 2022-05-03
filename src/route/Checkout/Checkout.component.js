@@ -10,16 +10,15 @@ export class CheckoutComponent extends SourceCheckout {
     const steps = this.stepMap
     const stepsKey = Object.keys(steps)
     const stepsList = stepsKey.map(step => {
-      return (steps[step])
+      return ({...steps[step], joinString: steps[step].title.toUpperCase().split(' ').join('_')})
     })
+    const currentIndex = stepsKey.indexOf(checkoutStep, 0)
+    console.log(stepsList)
 
     return (
       stepsList.map((step, i) => {
-        // console.log(checkoutStep)
-        const likeCheckoutStep = step.title.toUpperCase().split(' ').join('_')
-        console.log(likeCheckoutStep)
         return (
-          <div block='Steps' elem={`Step ${checkoutStep === likeCheckoutStep ? 'Active' : ''}`}>
+          <div key={i} block='Steps' elem={`Step ${i <= currentIndex ? 'Active' : ''}`}>
             <div block='Steps' elem='index'>{ i+1 }</div>
             <div block='Steps' elem='title'>{ step.title }</div>
           </div>
